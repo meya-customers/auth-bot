@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test-bot-auth</title>
+</head>
+<body>
+<script type="text/javascript">
+    window.orbConfig = {
+        connectionOptions: {
+            gridUrl: "https://grid.meya.ai",
+            appId: "app-dd40e256fb214703adbfa55cab3ca21f",
+            integrationId: "integration.orb",
+            connect: false,
+            // plain text userId (email in this case)
+            // Note, that this should be encrypted and decrypted in production
+            userId: "erik@meya.ai",
+            // this forces a new thread per page load (no chat history)
+            threadId: window.crypto.randomUUID(),
+            // HMAC 256 hash of the userId+exiry timestamp using a secret
+            // example hmac("erik@meya.ai1712881476") == "031d822ebc78950a475b0ba8f117b0aae44c6df5a7045e993324b9c46ae94a88"
+            pageContext: {
+                expires: 1712883389,
+                user_hash: "c43c7011eabaa5fc7bae5a18470ef1e31b35faec89c1715cecfadfa1a00b0917"
+            }
+        },
+        windowApi: true,
+    };
+    (function () {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.async = true;
+        script.src = "https://cdn.meya.ai/v2/orb.js";
+        document.body.appendChild(script);
+        var fontStyleSheet = document.createElement("link");
+        fontStyleSheet.rel = "stylesheet";
+        fontStyleSheet.href = "https://cdn.meya.ai/font/inter.css";
+        document.body.appendChild(fontStyleSheet);
+    })();
+</script>
+</body>
+</html>

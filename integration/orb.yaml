@@ -1,0 +1,15 @@
+type: meya.orb.integration
+identity_verification: false
+theme:
+  brand_color: '#004a95'
+launcher:
+  type: message
+  icon: ''
+  text: 🤐
+composer:
+  character_limit:
+    length: 64
+    error_text: You've gone too far 😡
+  upload:
+    progress_text: Discombobulating ☢️
+    error_text: File couldn't upload 😭

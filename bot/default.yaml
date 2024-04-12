@@ -1,0 +1,6 @@
+type: meya.bot.element
+name: Auth Bot
+avatar:
+  image: https://i.postimg.cc/brYQscPR/key.png
+  crop: square
+markdown: true

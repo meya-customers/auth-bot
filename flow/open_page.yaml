@@ -1,0 +1,37 @@
+triggers:
+  - type: page_open
+    when: (@ not thread.open_page )
+
+steps:
+  - thread_set:
+      open_page: true
+
+  # Orb userId
+  - type: meya.user.component.try_reverse_lookup
+    integration: integration.orb
+  - flow_set: user_id
+
+  # verify identity (sha256 is valid not expired)
+  - type: component.sha256
+    string: (@ flow.user_id )(@ flow.context.expires )
+    secret: (@ vault.verification_secret )
+  - flow_set: user_hash
+  - type: component.is_expired
+    timestamp: (@ flow.context.expires )
+  - flow_set: is_expired
+
+  - if: (@ flow.user_hash == flow.context.user_hash and not flow.is_expired)
+    then:
+      jump: verified
+    else:
+      jump: not_verified
+
+  - (verified)
+  - say: ✅ Welcome, (@ flow.user_id )!
+  - end
+
+  - (not_verified)
+  - say: ⛔️You are denied.
+  - thread_set:
+      mode: blocked
+  - end

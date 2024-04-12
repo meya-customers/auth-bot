@@ -1,0 +1,8 @@
+triggers:
+  - keyword: leak
+
+steps:
+  - say: Your secret is...
+  - typing: on
+  - delay: 1
+  - say: (@ user.secret )
