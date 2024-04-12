@@ -3,7 +3,7 @@ import time
 from component.sha256 import compute_hmac_sha256_signature
 
 # example
-ttl = 5 * 60  # 5 minutes
+ttl = 30  # 30 seconds
 current_timestamp = int(time.time()) + ttl
 user_id = "erik@meya.ai"
 secret = "solar_eclipse"
