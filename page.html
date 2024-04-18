@@ -6,6 +6,16 @@
 </head>
 <body>
 <script type="text/javascript">
+    const seenIds = new Set();
+    function onEventStream(eventStream) {
+        for (const event of eventStream.events) {
+            if (!seenIds.has(event.id)) {
+                console.log(event);
+                seenIds.add(event.id);
+            }
+        }
+    }
+
     window.orbConfig = {
         connectionOptions: {
             gridUrl: "https://grid.meya.ai",
@@ -20,8 +30,12 @@
             // HMAC 256 hash of the userId+exiry timestamp using a secret
             // example hmac("erik@meya.ai1712881476") == "031d822ebc78950a475b0ba8f117b0aae44c6df5a7045e993324b9c46ae94a88"
             pageContext: {
-                expires: 1712884314,
-                user_hash: "a2314db5f40d326886c834d6e449d3569cc06fa3af1bbd49788504c69e9b3e31"
+                expires: 1713479861,
+                user_hash: "861478653c5478f3a323ba2bf753ba79253c3910ccda1e07f2c3f201ddea666b"
+            },
+            onFirstConnect: (connectData, next) => {
+                orb.addListener("eventStream", onEventStream)
+                next()
             }
         },
         windowApi: true,

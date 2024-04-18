@@ -1,0 +1,34 @@
+triggers:
+  - keyword: page
+
+steps:
+  - say: Please choose a pet
+  - page:
+      - choices:
+          - 🦮Dog
+          - 🐈Cat
+          - 🐠Fish
+          - 🦜Bird
+    submit:
+      text: Submit
+    extra_buttons:
+      - text: 👈Back
+        action:
+          jump: back
+
+  - (submit)
+#  - delay: 2
+  - say: You chose (@ flow.result[0] )
+    quick_replies:
+      - text: Try again
+        action:
+          flow: flow.page
+  - end
+
+  - (back)
+#  - delay: 2
+  - say: 👈Back pressed
+    quick_replies:
+      - text: Try again
+        action:
+          flow: flow.page
