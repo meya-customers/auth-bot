@@ -7,6 +7,7 @@
 <body>
 <script type="text/javascript">
     const seenIds = new Set();
+
     function onEventStream(eventStream) {
         for (const event of eventStream.events) {
             if (!seenIds.has(event.id)) {
@@ -30,8 +31,8 @@
             // HMAC 256 hash of the userId+exiry timestamp using a secret
             // example hmac("erik@meya.ai1712881476") == "031d822ebc78950a475b0ba8f117b0aae44c6df5a7045e993324b9c46ae94a88"
             pageContext: {
-                expires: 1713479861,
-                user_hash: "861478653c5478f3a323ba2bf753ba79253c3910ccda1e07f2c3f201ddea666b"
+                expires: 1714085758,
+                user_hash: "99f057da7032089cc904dcdbb6cfdf9b1ca23c2b49589c0ab9f39435bcc7671e"
             },
             onFirstConnect: (connectData, next) => {
                 orb.addListener("eventStream", onEventStream)

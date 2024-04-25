@@ -1,1 +1,3 @@
 verification_secret: solar_eclipse
+webhook.postback_url: https://erik-meya.requestcatcher.com/test
+webhook.api_key: "1234"
