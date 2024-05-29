@@ -17,7 +17,7 @@ steps:
           jump: back
 
   - (submit)
-#  - delay: 2
+  - delay: 2
   - say: You chose (@ flow.result[0] )
     quick_replies:
       - text: Try again
@@ -26,7 +26,7 @@ steps:
   - end
 
   - (back)
-#  - delay: 2
+  - delay: 2
   - say: 👈Back pressed
     quick_replies:
       - text: Try again
